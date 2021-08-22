@@ -36,6 +36,7 @@ namespace Test
             InitializeComponent();
             this.fooTextBox.MouseDoubleClick += new System.Windows.Input.MouseButtonEventHandler(fooTextBox_MouseDoubleClick);
             this.fooTextBox.ShowTab = true;
+            this.fooTextBox.ShowHalfSpace = true;
             this.fooTextBox.ShowFullSpace = true;
             this.fooTextBox.ShowLineBreak = true;
 

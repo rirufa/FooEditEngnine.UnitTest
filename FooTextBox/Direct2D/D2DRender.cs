@@ -280,7 +280,7 @@ namespace FooEditEngine.WPF
                 return;
             render.Flush();
             this.cachedBitMap.CopyFromRenderTarget(this.render, new SharpDX.Point(), new SharpDX.Rectangle(0, 0, (int)this.renderSize.Width, (int)this.renderSize.Height));
-            this.hasCache = true;
+            //this.hasCache = true;
         }
 
         void CreateDevice()
@@ -405,7 +405,7 @@ namespace FooEditEngine.WPF
             resource.Dispose();
             texture.Dispose();
 
-            this.render = new D2D.RenderTarget(D2DRenderShared.D2DFactory, this.surface, prop);
+            this.render = new D2D.RenderTarget(this._factory.D2DFactory, this.surface, prop);
 
             D2D.BitmapProperties bmpProp = new D2D.BitmapProperties();
             bmpProp.DpiX = dpiX;
@@ -414,7 +414,7 @@ namespace FooEditEngine.WPF
             this.cachedBitMap = new D2D.Bitmap(this.render, new SharpDX.Size2((int)width, (int)height), bmpProp);
             this.hasCache = false;
 
-            this.textRender = new CustomTextRenderer(this.Brushes, this.Strokes, this.Foreground);
+            this.textRender = new CustomTextRenderer(this._factory, this.Foreground);
 
             this.renderSize = new Size(width, height);
         }
@@ -424,8 +424,6 @@ namespace FooEditEngine.WPF
             this.hasCache = false;
             if (this.cachedBitMap != null)
                 this.cachedBitMap.Dispose();
-            this.Brushes.Clear();
-            this.Strokes.Clear();
             if (this.textRender != null)
                 this.textRender.Dispose();
             if (this.texture != null)
