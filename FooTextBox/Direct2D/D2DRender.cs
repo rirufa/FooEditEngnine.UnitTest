@@ -267,11 +267,11 @@ namespace FooEditEngine.WPF
             return (DW.FontWeight)Enum.Parse(typeof(DW.FontWeight), weigth.ToString());
         }
 
-        public override void DrawCachedBitmap(Rectangle rect)
+        public override void DrawCachedBitmap(Rectangle dstRect, Rectangle srcRect)
         {
             if (this.render == null || this.render.IsDisposed || this.cachedBitMap == null || this.cachedBitMap.IsDisposed)
                 return;
-            render.DrawBitmap(this.cachedBitMap, rect, 1.0f, D2D.BitmapInterpolationMode.Linear, rect);
+            render.DrawBitmap(this.cachedBitMap, dstRect, 1.0f, D2D.BitmapInterpolationMode.Linear, srcRect);
         }
 
         public override void CacheContent()
